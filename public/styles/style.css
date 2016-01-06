@@ -1,3 +1,7 @@
 .no-margin {
     margin: 0;
 }
+
+#from-bottom {
+    margin-bottom: 70px;
+}
