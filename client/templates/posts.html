@@ -1,0 +1,28 @@
+<template name="posts">
+    <div class="container col-xs-12" id="from-bottom">
+        {{#if posts.count}}
+            {{#each posts}}
+                {{> post}}
+            {{/each}}
+        {{else}}
+            <h1 class="text-center">
+                No posts in this conference yet!
+            </h1>
+        {{/if}}
+    </div>
+</template>
+
+<template name="post">
+    <div class="col-xs-12">
+        <h3>{{content}}</h3>
+        <h5>{{formatDate created}}</h5>
+        <h5>Votes: {{votes}}</h5>
+        <button type="submit" class="btn btn-success btn-sm upvote" id="{{_id}}">
+            Upvote
+        </button>
+        <button type="submit" class="btn btn-failure btn-sm downvote" id="{{_id}}">
+            Downvote
+        </button>
+        <hr>
+    </div>
+</template>
