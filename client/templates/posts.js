@@ -27,9 +27,22 @@ Template.posts.events({
     }
 });
 
-Template.registerHelper('formatDate', function(date) {
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    var year = date.getFullYear();
-    return "Posted On: ".concat(month, "-", day, "-", year);
+Template.registerHelper('formatDate', function (timeStamp) {
+    var now = new Date(),
+    secondsPast = (now.getTime() - timeStamp.getTime()) / 1000;
+    if (secondsPast < 60) {
+        return "Posted " + parseInt(secondsPast) + ' seconds ago.';
+    }
+    if (secondsPast < 3600) {
+        return "Posted " + parseInt(secondsPast/60) + ' minutes ago.';
+    }
+    if (secondsPast <= 86400) {
+        return "Posted " + parseInt(secondsPast/3600) + ' hours ago.';
+    }
+    if (secondsPast > 86400) {
+        day = timeStamp.getDate();
+        month = timeStamp.toDateString().match(/ [a-zA-Z]*/)[0].replace(" ","");
+        year = timeStamp.getFullYear();
+        return "Posted on " + month + " " + day + ", " + year;
+    }
 });
